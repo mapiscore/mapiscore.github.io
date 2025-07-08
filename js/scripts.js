@@ -1,12 +1,29 @@
 // scripts.js
 
 function calculateMAPI() {
-  // Retrieve values from the form fields
-  const sex = document.getElementById('sex_female').checked ? 1 : 0;
-  const mcv = parseFloat(document.getElementById('mcv').value);
-  let ggt = parseFloat(document.getElementById('ggt').value);
-  let hdl = parseFloat(document.getElementById('hdl').value);
-  let hba1c = parseFloat(document.getElementById('hba1c').value);
+  // Retrieve raw input strings for validation
+  const mcvInput = document.getElementById('mcv').value.trim();
+  const ggtInput = document.getElementById('ggt').value.trim();
+  const hdlInput = document.getElementById('hdl').value.trim();
+  const hba1cInput = document.getElementById('hba1c').value.trim();
+
+  // Check that all fields are filled
+  if (!mcvInput || !ggtInput || !hdlInput || !hba1cInput) {
+    document.getElementById('mapi_result').textContent = "Please fill in all fields.";
+    return;
+  }
+
+  // Parse the numeric values
+  const mcv = parseFloat(mcvInput);
+  let ggt = parseFloat(ggtInput);
+  let hdl = parseFloat(hdlInput);
+  let hba1c = parseFloat(hba1cInput);
+
+  // Ensure valid numeric input
+  if (isNaN(mcv) || isNaN(ggt) || isNaN(hdl) || isNaN(hba1c)) {
+    document.getElementById('mapi_result').textContent = "Please fill in all fields with valid numbers.";
+    return;
+  }
 
   // Unit conversions if needed
   if (document.getElementById('ggt_ukat').checked) {
@@ -21,15 +38,9 @@ function calculateMAPI() {
     hba1c = (hba1c / 10.929) + 2.15; // Convert mmol/mol to %
   }
 
-  // Basic validation: ensure all fields are valid numbers
-  if (isNaN(mcv) || isNaN(ggt) || isNaN(hdl) || isNaN(hba1c)) {
-    document.getElementById('mapi_result').textContent = "Please fill in all fields.";
-    return;
-  }
-
-  // Compute lp according to the provided formula
+  // Compute lp using the provided formula
   const lp = -31.679
-    - 1.323 * sex
+    - 1.323 * (document.getElementById('sex_female').checked ? 1 : 0)
     + 6.347 * Math.log(mcv)
     + 0.583 * Math.log(ggt)
     + 1.934 * Math.log(hdl)
