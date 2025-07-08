@@ -8,6 +8,8 @@
     <link rel="icon" href="favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet" />
+    <!-- MathJax for LaTeX formatting -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body id="page-top">
     <!-- Navigation -->
@@ -126,12 +128,16 @@
       <div class="container">
         <h2 class="fw-bold mb-4">Overview</h2>
         <p>This calculator estimates the predicted probability of MetALD-ALD using the following formula:</p>
+        <!-- MathJax block for proper formula formatting -->
         <p>
-          MAPI = e^(lp) / (1+ e^(lp)), where:<br>
-          lp = -31.679 - 1.323×Sex (female=1, male=0) + 6.347×ln(MCV [fL]) <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.583×ln(GGT [U/L]) + 1.934×ln(HDL-C [mg/dL]) - 4.109×ln(HbA1c [%])
+          $$\text{MAPI} = \frac{e^{lp}}{1+e^{lp}}$$
+          $$lp = -31.679 - 1.323\times\text{Sex (female=1, male=0)} + 6.347\times\ln\left(\text{MCV [fL]}\right)$$
+          $$\quad + 0.583\times\ln\left(\text{GGT [U/L]}\right) + 1.934\times\ln\left(\text{HDL-C [mg/dL]}\right)
+          - 4.109\times\ln\left(\text{HbA1c [%]}\right)$$
         </p>
-        <p>The units for GGT, HDL-C, and HbA1c can be toggled, and unit conversion is performed automatically.</p>
+        <p>
+          The units for GGT, HDL-C, and HbA1c can be toggled, and unit conversion is performed automatically.
+        </p>
         <!-- Example table (modify as needed) -->
         <div class="table-responsive">
           <table class="table table-bordered">
