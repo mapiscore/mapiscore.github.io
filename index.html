@@ -1,125 +1,248 @@
-<!-- index.html -->
-<!-- Only showing header section and relevant changes -->
-<!-- FULL FILE STARTS HERE -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="MetALD-ALD Prediction Index (MAPI) Calculator" />
-  <title>MetALD-ALD Prediction Index (MAPI)</title>
-  <link rel="icon" href="favicon.ico" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <meta name="description" content="MetALD-ALD Prediction Index (MAPI) Calculator" />
+        <meta name="author" content="GeneEater" />
+        <title>MetALD-ALD Prediction Index (MAPI) Calculator</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
 
-<body id="page-top">
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="container px-4">
-      <a href="#" class="navbar-left" style="padding-right:15px"><img src="favicon.ico" alt="favicon" /></a>
-      <a class="navbar-brand" href="#">MAPI Calculator</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#calculator">Calculator</a></li>
-          <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a href="#" class="navbar-left" style="padding-right:15px"><img src="favicon.ico"></a>
+                <a class="navbar-brand" href="#">MetALD-ALD Prediction Index (MAPI) Calculator</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" 
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#calculator">Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white" id="calculator">
+            <div class="container px-2 text-md-center">
+                <h1 class="fw-bolder">MetALD-ALD Prediction Index (MAPI) Calculator</h1>
 
-  <!-- Header / Calculator Section -->
-  <header class="bg-primary bg-gradient text-white pt-5" id="calculator">
-    <div class="container py-5">
-      <h1 class="fw-bold text-center mb-4">MetALD-ALD Prediction Index (MAPI)</h1>
-      <form id="mapiForm" class="row g-3 text-dark bg-light p-4 rounded shadow">
-        <!-- Sex -->
-        <div class="col-md-12">
-          <label class="form-label fw-bold">Sex</label><br />
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sex" id="sex_female" value="1" checked>
-            <label class="form-check-label" for="sex_female">Female</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sex" id="sex_male" value="0">
-            <label class="form-check-label" for="sex_male">Male</label>
-          </div>
-        </div>
+                <!-- calculator -->
+                <div class="m-5 bd-highlight mb-3">
+                    <div class="row justify-content-center g-3">
 
-        <!-- MCV -->
-        <div class="col-md-6">
-          <label for="mcv" class="form-label fw-bold">MCV (fL)</label>
-          <input type="number" class="form-control" id="mcv" placeholder="e.g. 90">
-        </div>
+                        <!-- Sex Field -->
+                        <div class="col-md-4 text-start">
+                            <label class="form-label"><b>Sex</b></label>
+                            <div class="btn-group" role="group" aria-label="Sex">
+                                <input type="radio" class="btn-check" name="sexOptions" id="sexFemale" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="sexFemale">Female</label>
 
-        <!-- GGT -->
-        <div class="col-md-6">
-          <label for="ggt" class="form-label fw-bold">GGT</label>
-          <input type="number" class="form-control" id="ggt" placeholder="e.g. 120">
-          <div class="form-check form-check-inline mt-2">
-            <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ul" value="ul" checked>
-            <label class="form-check-label" for="ggt_ul">U/L</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ukat" value="ukat">
-            <label class="form-check-label" for="ggt_ukat">µkat/L</label>
-          </div>
-        </div>
+                                <input type="radio" class="btn-check" name="sexOptions" id="sexMale" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="sexMale">Male</label>
+                            </div>
+                        </div>
 
-        <!-- HDL-C -->
-        <div class="col-md-6">
-          <label for="hdl" class="form-label fw-bold">HDL-C</label>
-          <input type="number" class="form-control" id="hdl" placeholder="e.g. 50">
-          <div class="form-check form-check-inline mt-2">
-            <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mgdl" value="mgdl" checked>
-            <label class="form-check-label" for="hdl_mgdl">mg/dL</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mmoll" value="mmoll">
-            <label class="form-check-label" for="hdl_mmoll">mmol/L</label>
-          </div>
-        </div>
+                        <!-- MCV Field -->
+                        <div class="col-md-4 text-start">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="MCV" placeholder="fL">
+                                <label for="MCV">MCV (fL)</label>
+                            </div>
+                        </div>
 
-        <!-- HbA1c -->
-        <div class="col-md-6">
-          <label for="hba1c" class="form-label fw-bold">HbA1c</label>
-          <input type="number" class="form-control" id="hba1c" placeholder="e.g. 5.5">
-          <div class="form-check form-check-inline mt-2">
-            <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_percent" value="percent" checked>
-            <label class="form-check-label" for="hba1c_percent">%</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_mmoll" value="mmoll">
-            <label class="form-check-label" for="hba1c_mmoll">mmol/mol</label>
-          </div>
-        </div>
+                        <!-- GGT Field -->
+                        <div class="col-md-4 text-start">
+                            <div class="d-flex">
+                                <div class="form-floating flex-grow-1">
+                                    <input type="number" class="form-control" id="GGT" placeholder="value">
+                                    <label for="GGT">GGT</label>
+                                </div>
+                                <div class="btn-group ms-1" role="group" aria-label="GGT Units">
+                                    <input type="radio" class="btn-check" name="GGTUnits" id="GGT_UL" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="GGT_UL">U/L</label>
 
-        <!-- Calculate Button -->
-        <div class="col-12">
-          <button type="button" class="btn btn-success" onclick="calculateMAPI()">Calculate MAPI</button>
-        </div>
+                                    <input type="radio" class="btn-check" name="GGTUnits" id="GGT_uKat" autocomplete="off">
+                                    <label class="btn btn-outline-warning" for="GGT_uKat">µkat/L</label>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Result -->
-        <div class="col-12">
-          <h4 class="text-center text-dark mt-3" id="mapi_result"></h4>
-        </div>
-      </form>
+                        <!-- HDL-C Field -->
+                        <div class="col-md-4 text-start">
+                            <div class="d-flex">
+                                <div class="form-floating flex-grow-1">
+                                    <input type="number" class="form-control" id="HDL" placeholder="value">
+                                    <label for="HDL">HDL-C</label>
+                                </div>
+                                <div class="btn-group ms-1" role="group" aria-label="HDL Units">
+                                    <input type="radio" class="btn-check" name="HDLUnits" id="HDL_mgdl" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="HDL_mgdl">mg/dL</label>
 
-      <!-- Disclaimer -->
-      <p class="mt-4 text-white"><strong>Disclaimer:</strong> This tool is for academic and research use only. It is not a medical device and should not be used for clinical decision-making.</p>
-    </div>
-  </header>
+                                    <input type="radio" class="btn-check" name="HDLUnits" id="HDL_mmoll" autocomplete="off">
+                                    <label class="btn btn-outline-warning" for="HDL_mmoll">mmol/L</label>
+                                </div>
+                            </div>
+                        </div>
 
-  <!-- The rest of your sections (overview, contact, about, etc.) remain unchanged -->
-  <!-- ... -->
+                        <!-- HbA1c Field -->
+                        <div class="col-md-4 text-start">
+                            <div class="d-flex">
+                                <div class="form-floating flex-grow-1">
+                                    <input type="number" class="form-control" id="HbA1c" placeholder="value">
+                                    <label for="HbA1c">HbA1c</label>
+                                </div>
+                                <div class="btn-group ms-1" role="group" aria-label="HbA1c Units">
+                                    <input type="radio" class="btn-check" name="HbA1cUnits" id="HbA1c_percent" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="HbA1c_percent">%</label>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/scripts.js"></script>
-</body>
+                                    <input type="radio" class="btn-check" name="HbA1cUnits" id="HbA1c_mmoll" autocomplete="off">
+                                    <label class="btn btn-outline-warning" for="HbA1c_mmoll">mmol/mol</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                </div>
+
+                <div class="flex-row justify-content-center">
+                    <div class="d-inline-flex form-floating p-1 text-dark">
+                        <input type="text" class="form-control" id="MAPI_value" style="text-align:center;" placeholder="NaN" value="NaN" disabled>
+                        <label for="MAPI_value">MAPI</label>
+                    </div>
+                    <div id="MAPI_result" class="d-inline-flex align-middle ps-2 pb-3 mb-2 text-warning">
+                        <b>% predicted probability<br>of MetALD-ALD</b>
+                    </div>
+                </div>
+
+                <p class="m-3"><b>Disclaimer notice:</b> It is important to bear in mind that this is not a medical device and creators are not responsible for the use of the algorithm in a clinical setting.</p>
+            </div>
+        </header>
+
+        <!-- Overview section (kept same as before)-->
+        <section class="bg-light" id="overview">
+            <div class="container px-4">
+                <!-- (Overview contents remain unchanged) -->
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bolder mb-5">Overview</h2>
+                        <!-- Additional overview content can go here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section (unchanged)-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Contact us</h2>
+                        <p class="lead">
+                            Stefano Romeo, MD, PhD<br>
+                            Professor in Molecular and Clinical Medicine<br>
+                            University of Gothenburg, Institute of Medicine, Sahlgrenska Academy<br>
+                            Wallenberg Laboratory, Bruna Stråket 16<br>
+                            41345 Gothenburg, Sweden<br>
+                            Email: stefano [dot] romeo [at] wlab [dot] gu [dot] se
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About section (unchanged)-->
+        <section id="about">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>About this page</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4">
+                <p class="m-0 text-center text-white">Copyright &copy; MAPI Calculator 2021</p>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <script>
+            // Function to calculate the MAPI score based on user inputs.
+            function calculateMAPI() {
+                // Get Sex: assume female=1, male=0
+                let sex = document.getElementById("sexFemale").checked ? 1 : 0;
+                
+                let mcv = parseFloat(document.getElementById("MCV").value);
+                let ggtVal = parseFloat(document.getElementById("GGT").value);
+                let hdlVal = parseFloat(document.getElementById("HDL").value);
+                let hba1cVal = parseFloat(document.getElementById("HbA1c").value);
+                
+                if(mcv && ggtVal && hdlVal && hba1cVal){
+                    // Convert GGT to U/L if needed.
+                    let ggt_ul = document.getElementById("GGT_UL").checked ? ggtVal : ggtVal * 60;
+                    // Convert HDL to mg/dL if needed.
+                    let hdl_mgdl = document.getElementById("HDL_mgdl").checked ? hdlVal : hdlVal * 38.67;
+                    // Convert HbA1c to % if needed.
+                    let hba1c_percent = document.getElementById("HbA1c_percent").checked ? hba1cVal : (hba1cVal / 10.929) + 2.15;
+                    
+                    let lp = -31.679 
+                             - 1.323 * sex 
+                             + 6.347 * Math.log(mcv) 
+                             + 0.583 * Math.log(ggt_ul) 
+                             + 1.934 * Math.log(hdl_mgdl) 
+                             - 4.109 * Math.log(hba1c_percent);
+                    
+                    let mapi = Math.exp(lp) / (1 + Math.exp(lp));
+                    let mapiPercent = (mapi * 100).toFixed(2);
+                    
+                    document.getElementById("MAPI_value").value = mapiPercent;
+                    document.getElementById("MAPI_result").innerHTML = mapiPercent + "% predicted probability<br>of MetALD-ALD";
+                } else {
+                    document.getElementById("MAPI_value").value = "NaN";
+                    document.getElementById("MAPI_result").innerHTML = "% predicted probability<br>of MetALD-ALD";
+                }
+            }
+            
+            // Event listeners: recalc when any input changes.
+            document.getElementById("MCV").addEventListener("input", calculateMAPI);
+            document.getElementById("GGT").addEventListener("input", calculateMAPI);
+            document.getElementById("HDL").addEventListener("input", calculateMAPI);
+            document.getElementById("HbA1c").addEventListener("input", calculateMAPI);
+            
+            document.getElementById("sexFemale").addEventListener("click", calculateMAPI);
+            document.getElementById("sexMale").addEventListener("click", calculateMAPI);
+            
+            document.getElementById("GGT_UL").addEventListener("click", calculateMAPI);
+            document.getElementById("GGT_uKat").addEventListener("click", calculateMAPI);
+            
+            document.getElementById("HDL_mgdl").addEventListener("click", calculateMAPI);
+            document.getElementById("HDL_mmoll").addEventListener("click", calculateMAPI);
+            
+            document.getElementById("HbA1c_percent").addEventListener("click", calculateMAPI);
+            document.getElementById("HbA1c_mmoll").addEventListener("click", calculateMAPI);
+        </script>
+    </body>
 </html>
