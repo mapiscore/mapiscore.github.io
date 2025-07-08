@@ -1,125 +1,201 @@
-<!-- index.html -->
-<!-- Only showing header section and relevant changes -->
-<!-- FULL FILE STARTS HERE -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="MetALD-ALD Prediction Index (MAPI) Calculator" />
-  <title>MetALD-ALD Prediction Index (MAPI)</title>
-  <link rel="icon" href="favicon.ico" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet" />
-</head>
-
-<body id="page-top">
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="container px-4">
-      <a href="#" class="navbar-left" style="padding-right:15px"><img src="favicon.ico" alt="favicon" /></a>
-      <a class="navbar-brand" href="#">MAPI Calculator</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#calculator">Calculator</a></li>
-          <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        </ul>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="MetALD-ALD Prediction Index (MAPI) Calculator" />
+    <title>MetALD-ALD Prediction Index (MAPI)</title>
+    <link rel="icon" href="favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container px-4">
+        <a href="#" class="navbar-left me-2">
+          <img src="favicon.ico" alt="favicon" />
+        </a>
+        <a class="navbar-brand" href="#">MAPI Calculator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#calculator">Calculator</a></li>
+            <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Header / Calculator Section -->
-  <header class="bg-primary bg-gradient text-white pt-5" id="calculator">
-    <div class="container py-5">
-      <h1 class="fw-bold text-center mb-4">MetALD-ALD Prediction Index (MAPI)</h1>
-      <form id="mapiForm" class="row g-3 text-dark bg-light p-4 rounded shadow">
-        <!-- Sex -->
-        <div class="col-md-12">
-          <label class="form-label fw-bold">Sex</label><br />
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sex" id="sex_female" value="1" checked>
-            <label class="form-check-label" for="sex_female">Female</label>
+    <!-- Header / Calculator Section -->
+    <header class="bg-primary bg-gradient text-white pt-5" id="calculator">
+      <div class="container py-5">
+        <h1 class="fw-bold text-center mb-4">MetALD-ALD Prediction Index (MAPI)</h1>
+        <form id="mapiForm" class="row g-3 text-dark bg-light p-4 rounded shadow">
+          <!-- Sex -->
+          <div class="col-12">
+            <label class="form-label fw-bold">Sex</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="sex_female" value="1" checked>
+              <label class="form-check-label" for="sex_female">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="sex_male" value="0">
+              <label class="form-check-label" for="sex_male">Male</label>
+            </div>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sex" id="sex_male" value="0">
-            <label class="form-check-label" for="sex_male">Male</label>
+
+          <!-- MCV -->
+          <div class="col-md-6">
+            <label for="mcv" class="form-label fw-bold">MCV (fL)</label>
+            <input type="number" class="form-control" id="mcv" placeholder="e.g. 90">
           </div>
+
+          <!-- GGT -->
+          <div class="col-md-6">
+            <label for="ggt" class="form-label fw-bold">GGT</label>
+            <input type="number" class="form-control" id="ggt" placeholder="e.g. 120">
+            <div class="mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ul" value="ul" checked>
+                <label class="form-check-label" for="ggt_ul">U/L</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ukat" value="ukat">
+                <label class="form-check-label" for="ggt_ukat">µkat/L</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- HDL-C -->
+          <div class="col-md-6">
+            <label for="hdl" class="form-label fw-bold">HDL-C</label>
+            <input type="number" class="form-control" id="hdl" placeholder="e.g. 50">
+            <div class="mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mgdl" value="mgdl" checked>
+                <label class="form-check-label" for="hdl_mgdl">mg/dL</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mmoll" value="mmoll">
+                <label class="form-check-label" for="hdl_mmoll">mmol/L</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- HbA1c -->
+          <div class="col-md-6">
+            <label for="hba1c" class="form-label fw-bold">HbA1c</label>
+            <input type="number" class="form-control" id="hba1c" placeholder="e.g. 5.5">
+            <div class="mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_percent" value="percent" checked>
+                <label class="form-check-label" for="hba1c_percent">%</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_mmoll" value="mmoll">
+                <label class="form-check-label" for="hba1c_mmoll">mmol/mol</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calculate Button -->
+          <div class="col-12 text-center">
+            <button type="button" class="btn btn-success" onclick="calculateMAPI()">Calculate MAPI</button>
+          </div>
+
+          <!-- Result Display -->
+          <div class="col-12">
+            <h4 class="text-center text-dark mt-3" id="mapi_result"></h4>
+          </div>
+        </form>
+
+        <!-- Disclaimer -->
+        <p class="mt-4 text-white text-center">
+          <strong>Disclaimer:</strong> This tool is for academic and research use only. It is not a medical device and should not be used for clinical decision-making.
+        </p>
+      </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-bold mb-4">Overview</h2>
+        <p>This calculator estimates the predicted probability of MetALD-ALD using the following formula:</p>
+        <p>
+          MAPI = e^(lp) / (1+ e^(lp)), where:<br>
+          lp = -31.679 - 1.323×Sex (female=1, male=0) + 6.347×ln(MCV [fL]) <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.583×ln(GGT [U/L]) + 1.934×ln(HDL-C [mg/dL]) - 4.109×ln(HbA1c [%])
+        </p>
+        <p>The units for GGT, HDL-C, and HbA1c can be toggled, and unit conversion is performed automatically.</p>
+        <!-- Example table (modify as needed) -->
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-primary">
+                <th>Parameter</th>
+                <th>Unit Options</th>
+                <th>Conversion Formula (if applicable)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GGT</td>
+                <td>U/L, µkat/L</td>
+                <td>GGT (U/L) = GGT (µkat/L) × 60</td>
+              </tr>
+              <tr>
+                <td>HDL-C</td>
+                <td>mg/dL, mmol/L</td>
+                <td>HDL-C (mg/dL) = HDL-C (mmol/L) × 38.67</td>
+              </tr>
+              <tr>
+                <td>HbA1c</td>
+                <td>%, mmol/mol</td>
+                <td>HbA1c (%) = (HbA1c (mmol/mol) / 10.929) + 2.15</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+    </section>
 
-        <!-- MCV -->
-        <div class="col-md-6">
-          <label for="mcv" class="form-label fw-bold">MCV (fL)</label>
-          <input type="number" class="form-control" id="mcv" placeholder="e.g. 90">
-        </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="fw-bold mb-4">Contact Us</h2>
+        <p>
+          Stefano Romeo, MD, PhD<br>
+          Professor in Molecular and Clinical Medicine<br>
+          University of Gothenburg, Institute of Medicine, Sahlgrenska Academy<br>
+          Wallenberg Laboratory, Bruna Stråket 16<br>
+          41345 Gothenburg, Sweden<br>
+          Email: stefano [dot] romeo [at] wlab [dot] gu [dot] se
+        </p>
+      </div>
+    </section>
 
-        <!-- GGT -->
-        <div class="col-md-6">
-          <label for="ggt" class="form-label fw-bold">GGT</label>
-          <input type="number" class="form-control" id="ggt" placeholder="e.g. 120">
-          <div class="form-check form-check-inline mt-2">
-            <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ul" value="ul" checked>
-            <label class="form-check-label" for="ggt_ul">U/L</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ukat" value="ukat">
-            <label class="form-check-label" for="ggt_ukat">µkat/L</label>
-          </div>
-        </div>
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-bold mb-4">About This Page</h2>
+        <p>This page was designed to provide a simple online calculator based on logistic regression for predicting the probability of MetALD-ALD. It is intended for academic research purposes only.</p>
+      </div>
+    </section>
 
-        <!-- HDL-C -->
-        <div class="col-md-6">
-          <label for="hdl" class="form-label fw-bold">HDL-C</label>
-          <input type="number" class="form-control" id="hdl" placeholder="e.g. 50">
-          <div class="form-check form-check-inline mt-2">
-            <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mgdl" value="mgdl" checked>
-            <label class="form-check-label" for="hdl_mgdl">mg/dL</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mmoll" value="mmoll">
-            <label class="form-check-label" for="hdl_mmoll">mmol/L</label>
-          </div>
-        </div>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container text-center">
+        <p class="m-0 text-white">Copyright &copy; MAPI Calculator 2021</p>
+      </div>
+    </footer>
 
-        <!-- HbA1c -->
-        <div class="col-md-6">
-          <label for="hba1c" class="form-label fw-bold">HbA1c</label>
-          <input type="number" class="form-control" id="hba1c" placeholder="e.g. 5.5">
-          <div class="form-check form-check-inline mt-2">
-            <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_percent" value="percent" checked>
-            <label class="form-check-label" for="hba1c_percent">%</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_mmoll" value="mmoll">
-            <label class="form-check-label" for="hba1c_mmoll">mmol/mol</label>
-          </div>
-        </div>
-
-        <!-- Calculate Button -->
-        <div class="col-12">
-          <button type="button" class="btn btn-success" onclick="calculateMAPI()">Calculate MAPI</button>
-        </div>
-
-        <!-- Result -->
-        <div class="col-12">
-          <h4 class="text-center text-dark mt-3" id="mapi_result"></h4>
-        </div>
-      </form>
-
-      <!-- Disclaimer -->
-      <p class="mt-4 text-white"><strong>Disclaimer:</strong> This tool is for academic and research use only. It is not a medical device and should not be used for clinical decision-making.</p>
-    </div>
-  </header>
-
-  <!-- The rest of your sections (overview, contact, about, etc.) remain unchanged -->
-  <!-- ... -->
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/scripts.js"></script>
-</body>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
 </html>
