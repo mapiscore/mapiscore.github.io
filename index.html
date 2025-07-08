@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <meta name="description" content="Fibrotic NASH Index (FNI) Calculator" />
+        <meta name="author" content="GeneEater" />
+        <title>Fibrotic NASH Index (FNI) Calculator</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+        <!-- Latest compiled JavaScript -->
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4" background-color="#16537e">
+                <a href="#" class="navbar-left" style="padding-right:15px"><img src="favicon.ico"></a>
+                <a class="navbar-brand" href="#">Fibrotic NASH Index (FNI)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#calculator">Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white" id="calculator">
+            <div class="container px-2 text-md-center" >
+                <h1 class="fw-bolder">Fibrotic NASH Index (FNI) Calculator</h1>
+
+                <!-- calculator -->
+                <div class="m-5 bd-highlight mb-3">
+                    <div class="justify-content-start row">
+                        <div class="col form-check container mx-1 my-2 justify-content-center bd-highlight">
+                            <div class="d-inline-flex justify-content-center bd-highlight">
+                                <div id="astForm" style="min-width: 10rem" class="d-inline-flex form-floating text-dark">
+                                    <input type="number" class="form-control" id="floatingInputAST" placeholder="U/L" value="" data-bs-toggle="invalid-tooltip" data-bs-placement="top" data-bs-trigger="manual">
+                                    <label class="align-middle" for="floatingInputAST">AST</label>
+                                </div>
+                                <div class="mx-1 d-inline-flex justify-content-center bd-highlight">
+                                    <input type="radio" class="btn btn-check" name="options-AST" id="AST_UToL" autocomplete="off"  checked>
+                                    <label class="btn btn-outline-primary" for="AST_UToL">U/L</label>
+
+                                    <input type="radio" class="btn btn-check" name="options-AST" id="AST_MuKatToL" autocomplete="off" >
+                                    <label class="btn btn-outline-warning mx-1" for="AST_MuKatToL" >µkat/L</label>
+                                </div>
+                            </div>
+<!--                            <div id='astError' class="bg-danger mx-0 bd-highlight" style="display:none"></div>-->
+
+                        </div>
+
+                        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
+                            <div class="d-inline-flex justify-content-center bd-highlight">
+                                <div style="min-width: 10rem" class="d-inline-flex form-floating text-dark">
+                                    <input type="number" class="form-control" id="floatingInputHbA1c" placeholder="U/L" value="" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="manual">
+                                    <label class="align-middle" for="floatingInputHbA1c">HbA1c</label>
+                                </div>
+                                <div class="mx-1 d-inline-flex justify-content-center bd-highlight">
+                                    <input type="radio" class="btn btn-check" name="options-HbA1c" id="HbA1c_percentage" autocomplete="off"  checked>
+                                    <label class="btn btn-outline-primary" for="HbA1c_percentage">%</label>
+
+                                    <input type="radio" class="btn btn-check" name="options-HbA1c" id="HbA1c_percentage_mmoll" autocomplete="off" >
+                                    <label class="btn btn-outline-warning mx-1" for="HbA1c_percentage_mmoll" >mmol/mol</label>
+                                </div>
+                            </div>
+<!--                            <div id='hba1cError' class="bg-danger mx-1 bd-highlight" style="display:none"></div>-->
+                        </div>
+
+                        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
+                            <div class="d-inline-flex justify-content-center bd-highlight">
+                                <div style="min-width: 10rem" class="d-inline-flex form-floating text-dark">
+                                    <input type="number" class="form-control" id="floatingInputHDL" placeholder="U/L" value="" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="manual">
+                                    <label class="align-middle" for="floatingInputHDL">HDL</label>
+                                </div>
+                                <div class="mx-1 d-inline-flex justify-content-center bd-highlight">
+                                    <input type="radio" class="btn-check" name="options-HDL" id="HDL_mgdl" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="HDL_mgdl" >mg/dL</label>
+                                    <!--                                    data-toggle="tooltip" data-placement="top" title="HDL (mg/dL) = HDL (mmol/L)*38.67"-->
+
+                                    <input type="radio" class="btn-check" name="options-HDL" id="HDL_mmoll" autocomplete="off">
+                                    <label class="btn btn-outline-warning mx-1" for="HDL_mmoll" >mmol/L</label>
+                                </div>
+                            </div>
+<!--                            <div id='hdlError' class="bg-danger mx-1 bd-highlight" style="display:none"></div>-->
+                        </div>
+
+                    </div>
+                    <hr/>
+                </div>
+
+                <div class="flex-row justify-content-center">
+                    <div class="d-inline-flex form-floating p-1 text-dark">
+                        <input type="text" class="form-control" id="FNI_value"  style="text-align:center;" placeholder="NaN" value="NaN" disabled>
+                        <label class="align-middle" for="floatingInputHDL">FNI</label>
+                    </div>
+                    <div id="FNI_percentage" class="d-inline-flex align-middle ps-2 pb-3 mb-2 text-warning"><b>% predicted probability<br>of Fibrotic NASH</b></div>
+                </div>
+
+                <p class="m-3"><b>Disclaimer notice:</b> It is important to bear in mind that this is not a medical device and creators are not responsible for the use of the algorithm in a clinical setting.</p>
+
+<!--                <a class="btn btn-lg btn-light mt-5 mb-0" href="#wstt">Who should take the test?</a>-->
+            </div>
+        </header>
+        <!-- Overview section-->
+        <section class="bg-light" id="overview">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bolder mb-5">Overview</h2>
+                        <h3 class="fw-bolder" id="wstt">Who should take the test?</h3>
+                        <p class="lead">Individuals with 1 or more of the following conditions:</p>
+                        <ul class="inside">
+                            <li>Overweight (BMI ≥25 kg/m&#178;)</li>
+                            <li>Obesity (BMI ≥30 kg/m&#178;)</li>
+                            <li>Type 2 diabetes</li>
+                            <li>Metabolic syndrome:</li>
+                        </ul>
+                        <table class="table">
+                            <thead>
+                            <tr class="table-primary">
+                                <td colspan="2"><b>International Diabetes Federation (IDF) definition (2005)</b></td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr >
+                                <td>Central obesity</td>
+                                <td colspan="2">Waist circumference ≥ 94/80 cm in men/women (European ancestry)
+                                    or BMI > 30 kg/m&#178;
+                                </td>
+                            </tr>
+                            <tr class="table-secondary" >
+                                <td colspan="3">Plus any two of the following:
+                                </td>
+                            </tr>
+                            <tr >
+                                <td>Triglycerides </td>
+                                <td colspan="2">≥ 1.7 mmol/L (150 mg/dL) or specific treatment for this lipid abnormality
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>HDL cholesterol </td>
+                                <td>
+                                    <!-- nested row -->
+                                    <table>
+                                        <tr>
+                                            <td>< 1.03 mmol/L (40 mg/dL) in men</td>
+                                        </tr>
+                                        <tr>
+                                            <td>< 1.29 mmol/L (50 mg/dL) in women</td>
+                                        </tr>
+                                        <tr>
+                                            <td>or specific treatment for this lipid abnormality</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td>Blood pressure</td>
+                                <td colspan="2">Systolic ≥ 130 mmHg or diastolic ≥ 85 mmHg or treatment of previously diagnosed hypertension
+                                </td>
+                            </tr>
+                            <tr >
+                                <td>Fasting plasma glucose</td>
+                                <td colspan="2">≥ 5.6 mmol/L (100 mg/dL) or previously diagnosed type 2 diabetes
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 class="fw-bolder mb-3" id="outcome">Outcome</h3>
+                        <p class>•	Fibrotic NASH: histological diagnosis of NASH + elevated NAS score (NAS≥4) + significant fibrosis (F≥2)</p>
+
+                        <h3 class="fw-bolder mb-3" id="formula">Formula</h3>
+                        $$FNI = \dfrac{e^{\left(\alpha + \beta + \gamma + \delta \right)}}{ 1+e^{\left(\alpha + \beta + \gamma + \delta \right)}};$$ <br>
+                        where:<br>
+                        $$\alpha = -10.33;$$ <br>
+                        $$\beta = +2.54 \times \ln \left(AST \left[ U/L\right] \right);$$ <br>
+                        $$\gamma = +3.86 \times \ln \left(HbA1c \left[ \%\right] \right);$$ <br>
+
+                        $$\delta = -1.66 \times \ln \left(HDL \left[ mg/dL \right] \right);$$ <br>
+
+                        <p>
+                            The score was developed in the derivation cohort (264 morbidly obese individuals) using a bootstrapping stepwise logistic regression model (2000 bootstrap samples). The score was derived based on the final predictors and the corresponding regression coefficients. Performance for fibrotic NASH was assessed by the receiver operating characteristic curve (AUROC). Rule-out and rule-in cut-offs were derived based on sensitivity ≥0.89 and specificity ≥0.90, respectively.
+                        </p>
+
+                        <h3 class="fw-bolder mb-3" id="interpretation">Interpretation</h3>
+                        <p>The FNI is a predicted probability score derived from a logistic regression model, and it ranges from 0 to 1.</p>
+
+
+                        <h3 class="fw-bolder mb-3" id="performance">Performance and cut-offs</h3>
+
+                        <div class="container">
+                            <table class="table">
+                                <tr>
+                                    <td>N</td>
+                                    <td>264</td>
+                                </tr>
+                                <tr>
+                                    <td>Fibrotic NASH, n (%)</td>
+                                    <td>54 (20.5)</td>
+                                </tr>
+                                <tr style="border-bottom: 1px dashed black;">
+                                    <td>AUROC (95% CI)</td>
+                                    <td>0.78 (0.71-0.85)</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><b>FNI ≤ 0.10 (Rule-out zone)</b></td>
+                                </tr>
+                                <tr>
+                                    <td>n (%)</td>
+                                    <td>83 (31.4)</td>
+                                </tr>
+                                <tr>
+                                    <td>Sensitivity</td>
+                                    <td>0.89</td>
+                                </tr>
+                                <tr>
+                                    <td>Specificity</td>
+                                    <td>0.37</td>
+                                </tr>
+                                <tr>
+                                    <td>PPV</td>
+                                    <td>0.27</td>
+                                </tr>
+                                <tr style="border-bottom: 1px dashed black;">
+                                    <td>NPV</td>
+                                    <td>0.93</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><b>FNI ≥ 0.33 (Rule-in zone)</b></td>
+                                </tr>
+
+                                <tr>
+                                    <td>n (%)</td>
+                                    <td>49 (18.6)</td>
+                                </tr>
+                                <tr>
+                                    <td>Sensitivity</td>
+                                    <td>0.52</td>
+                                </tr>
+                                <tr>
+                                    <td>Specificity</td>
+                                    <td>0.90</td>
+                                </tr>
+                                <tr>
+                                    <td>PPV</td>
+                                    <td>0.57</td>
+                                </tr>
+                                <tr style="border-bottom: 1px dashed black;">
+                                    <td>NPV</td>
+                                    <td>0.88</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Contact us</h2>
+                        <p class="lead">
+                            Stefano Romeo, MD, PhD<br>
+                            Professor in Molecular and Clinical Medicine<br>
+                            University of Gothenburg, Institute of Medicine, Sahlgrenska Academy<br>
+                            Wallenberg Laboratory, Bruna Stråket 16<br>
+                            41345 Gothenburg, Sweden<br>
+                            Email: stefano [dot] romeo [at] wlab [dot] gu [dot] se
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About section-->
+        <section id="about">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>About this page</h2>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; FNI calculator 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+
+<!--    <script>-->
+<!--        $(document).ready(function(){-->
+<!--            $('[data-toggle="tooltip"]').tooltip();-->
+<!--        });-->
+<!--    </script>-->
+
+    <script>
+        function tooltip_handler(element_id, title, show) {
+            var element_instance = document.getElementById(element_id);
+            element_instance.setAttribute('data-bs-original-title', title);
+            let tooltip = bootstrap.Tooltip.getOrCreateInstance(element_instance);
+            if (show) {
+                tooltip.show()
+                element_instance.classList.add("is-invalid")
+            } else {
+                tooltip.hide()
+                element_instance.classList.remove("is-invalid")
+            }
+
+        }
+        function astValidation() {
+            var ast_utol = document.getElementById('AST_UToL').checked;
+            var text_field = document.getElementById("floatingInputAST")
+            // var error_field = document.getElementById("astError")
+            var entered_value = parseFloat(text_field.value);
+
+            if (entered_value == null) {
+                tooltip_handler("floatingInputAST", '', false)
+            } else if (ast_utol) {
+                if (entered_value < 3.3 || entered_value > 947.5) {
+                    tooltip_handler("floatingInputAST", String(entered_value) + ' is not within the valid range [3.3, 947.5].', true)
+                } else {
+                    tooltip_handler("floatingInputAST", '', false)
+                }
+            } else {
+                if (entered_value < 0.06 || entered_value > 16) {
+                    tooltip_handler("floatingInputAST", String(entered_value) + ' is not within the valid range [0.06, 16].', true)
+                } else {
+                    tooltip_handler("floatingInputAST", '', false)
+                }
+            }
+        }
+
+        function hba1cValidation() {
+            var ast_utol = document.getElementById('HbA1c_percentage').checked;
+            var text_field = document.getElementById("floatingInputHbA1c")
+            var entered_value = parseFloat(text_field.value);
+            if (entered_value == null) {
+                tooltip_handler("floatingInputHbA1c", '', false)
+            } else if (ast_utol) {
+                if (entered_value < 2.6 || entered_value > 49.5) {
+                    tooltip_handler("floatingInputHbA1c", String(entered_value) + ' is not within the valid range [2.6, 49.5].', true)
+                    // error_field.innerHTML = String(entered_value) + ' is not the valid range [2.6, 49.5].';
+                } else {
+                    tooltip_handler("floatingInputHbA1c", '', false)
+                }
+            } else {
+                if (entered_value < 5 || entered_value > 515.5) {
+                    tooltip_handler("floatingInputHbA1c", String(entered_value) + ' is not within the valid range [5, 515.5].', true)
+                    // error_field.innerHTML =  String(entered_value) + ' is not the valid range [5, 515.5].';
+                } else {
+                    tooltip_handler("floatingInputHbA1c", '', false)
+                }
+            }
+        }
+
+        function hdlValidation() {
+            var ast_utol = document.getElementById('HDL_mgdl').checked;
+            var text_field = document.getElementById("floatingInputHDL")
+            var entered_value = parseFloat(text_field.value);
+            if (entered_value == null) {
+                tooltip_handler("floatingInputHDL", '', false)
+            } else if (ast_utol) {
+                if (entered_value < 7.7 || entered_value > 174) {
+                    tooltip_handler("floatingInputHDL", String(entered_value) + ' is not within the valid range [7.7, 174].', true)
+                    // error_field.innerHTML = String(entered_value) + ' is not the valid range [7.7, 174].';
+                } else {
+                    tooltip_handler("floatingInputHDL", '', false)
+                }
+            } else {
+                if (entered_value < 0.2 || entered_value > 4.5) {
+                    tooltip_handler("floatingInputHDL", String(entered_value) + ' is not within the valid range [0.2, 4.5].', true)
+                    // error_field.innerHTML =  String(entered_value) + ' is not the valid range [0.2, 4.5].';
+                } else {
+                    tooltip_handler("floatingInputHDL", '', false)
+                }
+            }
+        }
+
+        function expo(x, f) {
+            return Number.parseFloat(x).toExponential(f);
+        }
+
+        function myFunction() {
+            var ast_val = parseFloat(document.getElementById("floatingInputAST").value);
+            var hba1c_val = parseFloat(document.getElementById("floatingInputHbA1c").value);
+            var hdl_val = parseFloat(document.getElementById("floatingInputHDL").value);
+            if (ast_val && hba1c_val && hdl_val){
+                var ast_utol = document.getElementById('AST_UToL').checked;
+                var hba1c_percentage = document.getElementById('HbA1c_percentage').checked;
+                var hdl_mdgl = document.getElementById('HDL_mgdl').checked;
+                var ast = ast_utol ? ast_val : ast_val / 0.0166
+                var hba1c = hba1c_percentage ? hba1c_val : (hba1c_val / 10.929) + 2.15;
+                var hdl = hdl_mdgl ? hdl_val: hdl_val * 38.67;
+                let temp = Math.exp(-10.33+2.54*Math.log(ast)+3.86*Math.log(hba1c)-1.66*Math.log(hdl));
+                let FNI = (temp/(1+temp)).toFixed(2);
+                document.getElementById("FNI_value").value = String(FNI);
+                FNI_perc = String(Math.round(FNI*100))
+                document.getElementById("FNI_percentage").innerHTML = FNI_perc + "% predicted probability<br>of Fibrotic NASH";
+            } else {
+                document.getElementById("FNI_value").value = "NaN";
+                document.getElementById("FNI_percentage").innerHTML =  "% predicted probability<br>of Fibrotic NASH";
+            }
+
+        }
+
+        function check_ast_range() {
+            astValidation()
+            myFunction()
+        }
+
+        function check_hba1c_range() {
+            hba1cValidation()
+            myFunction()
+        }
+
+        function check_hdl_range() {
+            hdlValidation()
+            myFunction()
+        }
+
+        document.getElementById("floatingInputAST").addEventListener("input", check_ast_range);
+        document.getElementById("floatingInputHbA1c").addEventListener("input", check_hba1c_range);
+        document.getElementById("floatingInputHDL").addEventListener("input", check_hdl_range);
+        document.getElementById("AST_UToL").addEventListener("click", check_ast_range);
+        document.getElementById("AST_MuKatToL").addEventListener("click", check_ast_range);
+        document.getElementById("HbA1c_percentage").addEventListener("click", check_hba1c_range);
+        document.getElementById("HbA1c_percentage_mmoll").addEventListener("click", check_hba1c_range);
+        document.getElementById("HDL_mgdl").addEventListener("click", check_hdl_range);
+        document.getElementById("HDL_mmoll").addEventListener("click", check_hdl_range);
+    </script>
+
+
+
+
+</html>
