@@ -1,102 +1,125 @@
-<header class="bg-primary bg-gradient text-white" id="calculator">
-  <div class="container px-2 text-md-center">
-    <h1 class="fw-bolder">MetALD-ALD Prediction Index (MAPI) Calculator</h1>
+<!-- index.html -->
+<!-- Only showing header section and relevant changes -->
+<!-- FULL FILE STARTS HERE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MetALD-ALD Prediction Index (MAPI) Calculator" />
+  <title>MetALD-ALD Prediction Index (MAPI)</title>
+  <link rel="icon" href="favicon.ico" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
 
-    <!-- calculator -->
-    <div class="m-5 bd-highlight mb-3">
-      <div class="justify-content-start row">
+<body id="page-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container px-4">
+      <a href="#" class="navbar-left" style="padding-right:15px"><img src="favicon.ico" alt="favicon" /></a>
+      <a class="navbar-brand" href="#">MAPI Calculator</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#calculator">Calculator</a></li>
+          <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header / Calculator Section -->
+  <header class="bg-primary bg-gradient text-white pt-5" id="calculator">
+    <div class="container py-5">
+      <h1 class="fw-bold text-center mb-4">MetALD-ALD Prediction Index (MAPI)</h1>
+      <form id="mapiForm" class="row g-3 text-dark bg-light p-4 rounded shadow">
         <!-- Sex -->
-        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
-          <label class="form-label">Sex</label><br />
-          <div class="d-inline-flex justify-content-center bd-highlight">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="sex" id="sex_female" value="1" checked />
-              <label class="form-check-label" for="sex_female">Female</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="sex" id="sex_male" value="0" />
-              <label class="form-check-label" for="sex_male">Male</label>
-            </div>
+        <div class="col-md-12">
+          <label class="form-label fw-bold">Sex</label><br />
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" id="sex_female" value="1" checked>
+            <label class="form-check-label" for="sex_female">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sex" id="sex_male" value="0">
+            <label class="form-check-label" for="sex_male">Male</label>
           </div>
         </div>
 
         <!-- MCV -->
-        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
-          <div class="d-inline-flex justify-content-center bd-highlight">
-            <div class="form-floating text-dark" style="min-width: 10rem">
-              <input type="number" class="form-control" id="mcv" placeholder="MCV" />
-              <label for="mcv">MCV (fL)</label>
-            </div>
-          </div>
+        <div class="col-md-6">
+          <label for="mcv" class="form-label fw-bold">MCV (fL)</label>
+          <input type="number" class="form-control" id="mcv" placeholder="e.g. 90">
         </div>
 
         <!-- GGT -->
-        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
-          <div class="d-inline-flex justify-content-center bd-highlight">
-            <div class="form-floating text-dark" style="min-width: 10rem">
-              <input type="number" class="form-control" id="ggt" placeholder="GGT" />
-              <label for="ggt">GGT</label>
-            </div>
-            <div class="mx-1 d-inline-flex justify-content-center bd-highlight">
-              <input type="radio" class="btn btn-check" name="ggt_unit" id="ggt_ul" checked />
-              <label class="btn btn-outline-primary" for="ggt_ul">U/L</label>
-
-              <input type="radio" class="btn btn-check" name="ggt_unit" id="ggt_ukat" />
-              <label class="btn btn-outline-warning mx-1" for="ggt_ukat">µkat/L</label>
-            </div>
+        <div class="col-md-6">
+          <label for="ggt" class="form-label fw-bold">GGT</label>
+          <input type="number" class="form-control" id="ggt" placeholder="e.g. 120">
+          <div class="form-check form-check-inline mt-2">
+            <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ul" value="ul" checked>
+            <label class="form-check-label" for="ggt_ul">U/L</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ggt_unit" id="ggt_ukat" value="ukat">
+            <label class="form-check-label" for="ggt_ukat">µkat/L</label>
           </div>
         </div>
 
-        <!-- HDL -->
-        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
-          <div class="d-inline-flex justify-content-center bd-highlight">
-            <div class="form-floating text-dark" style="min-width: 10rem">
-              <input type="number" class="form-control" id="hdl" placeholder="HDL" />
-              <label for="hdl">HDL-C</label>
-            </div>
-            <div class="mx-1 d-inline-flex justify-content-center bd-highlight">
-              <input type="radio" class="btn btn-check" name="hdl_unit" id="hdl_mgdl" checked />
-              <label class="btn btn-outline-primary" for="hdl_mgdl">mg/dL</label>
-
-              <input type="radio" class="btn btn-check" name="hdl_unit" id="hdl_mmoll" />
-              <label class="btn btn-outline-warning mx-1" for="hdl_mmoll">mmol/L</label>
-            </div>
+        <!-- HDL-C -->
+        <div class="col-md-6">
+          <label for="hdl" class="form-label fw-bold">HDL-C</label>
+          <input type="number" class="form-control" id="hdl" placeholder="e.g. 50">
+          <div class="form-check form-check-inline mt-2">
+            <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mgdl" value="mgdl" checked>
+            <label class="form-check-label" for="hdl_mgdl">mg/dL</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hdl_unit" id="hdl_mmoll" value="mmoll">
+            <label class="form-check-label" for="hdl_mmoll">mmol/L</label>
           </div>
         </div>
 
         <!-- HbA1c -->
-        <div class="col container mx-1 my-2 justify-content-center bd-highlight">
-          <div class="d-inline-flex justify-content-center bd-highlight">
-            <div class="form-floating text-dark" style="min-width: 10rem">
-              <input type="number" class="form-control" id="hba1c" placeholder="HbA1c" />
-              <label for="hba1c">HbA1c</label>
-            </div>
-            <div class="mx-1 d-inline-flex justify-content-center bd-highlight">
-              <input type="radio" class="btn btn-check" name="hba1c_unit" id="hba1c_percent" checked />
-              <label class="btn btn-outline-primary" for="hba1c_percent">%</label>
-
-              <input type="radio" class="btn btn-check" name="hba1c_unit" id="hba1c_mmoll" />
-              <label class="btn btn-outline-warning mx-1" for="hba1c_mmoll">mmol/mol</label>
-            </div>
+        <div class="col-md-6">
+          <label for="hba1c" class="form-label fw-bold">HbA1c</label>
+          <input type="number" class="form-control" id="hba1c" placeholder="e.g. 5.5">
+          <div class="form-check form-check-inline mt-2">
+            <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_percent" value="percent" checked>
+            <label class="form-check-label" for="hba1c_percent">%</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hba1c_unit" id="hba1c_mmoll" value="mmoll">
+            <label class="form-check-label" for="hba1c_mmoll">mmol/mol</label>
           </div>
         </div>
-      </div>
-      <hr />
-    </div>
 
-    <!-- Output -->
-    <div class="flex-row justify-content-center">
-      <div class="d-inline-flex form-floating p-1 text-dark">
-        <input type="text" class="form-control" id="mapi_value" style="text-align: center" placeholder="NaN" value="NaN" disabled />
-        <label for="mapi_value">MAPI</label>
-      </div>
-      <div id="mapi_percentage" class="d-inline-flex align-middle ps-2 pb-3 mb-2 text-warning">
-        <b>% predicted probability<br />of MetALD-ALD</b>
-      </div>
-    </div>
+        <!-- Calculate Button -->
+        <div class="col-12">
+          <button type="button" class="btn btn-success" onclick="calculateMAPI()">Calculate MAPI</button>
+        </div>
 
-    <p class="m-3">
-      <b>Disclaimer notice:</b> It is important to bear in mind that this is not a medical device and creators are not responsible for the use of the algorithm in a clinical setting.
-    </p>
-  </div>
-</header>
+        <!-- Result -->
+        <div class="col-12">
+          <h4 class="text-center text-dark mt-3" id="mapi_result"></h4>
+        </div>
+      </form>
+
+      <!-- Disclaimer -->
+      <p class="mt-4 text-white"><strong>Disclaimer:</strong> This tool is for academic and research use only. It is not a medical device and should not be used for clinical decision-making.</p>
+    </div>
+  </header>
+
+  <!-- The rest of your sections (overview, contact, about, etc.) remain unchanged -->
+  <!-- ... -->
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
