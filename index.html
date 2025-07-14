@@ -167,6 +167,15 @@
         <p><em>*We revised the 2023 classification of SLD subcategories by incorporating PEth alongside self-reported alcohol use, specifically in cases of underreporting discrepancy, to enhance precision and minimize misclassification due to alcohol underreporting.</em></p>
 
         <h5 class="fw-bold mt-4">Formula</h5>
+
+        <p>
+          $$\text{MAPI} = \frac{e^{lp}}{1+e^{lp}}$$<br>
+          $$lp = -31.679 - 1.323 \times \text{Sex (female=1, male=0)} \\ 
+          + 6.347 \times \ln\left(\text{MCV [fL]}\right) \\ 
+          + 0.583 \times \ln\left(\text{GGT [U/L]}\right) \\ 
+          + 1.934 \times \ln\left(\text{HDL-C [mg/dL]}\right) \\ 
+          - 4.109 \times \ln\left(\text{HbA1c [%]}\right)$$
+        </p>
         <p>
           $$\text{MAPI} = \frac{e^{lp}}{1+e^{lp}}$$<br>
           $$lp = -31.679 - 1.323\times\text{Sex (female=1, male=0)} + 6.347\times\ln\left(\text{MCV [fL]}\right) + 0.583\times\ln\left(\text{GGT [U/L]}\right) + 1.934\times\ln\left(\text{HDL-C [mg/dL]}\right) - 4.109\times\ln\left(\text{HbA1c [%]}\right)$$
