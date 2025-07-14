@@ -48,9 +48,9 @@ function calculateMAPI() {
 
   // Calculate MAPI probability
   const mapi = Math.exp(lp) / (1 + Math.exp(lp));
-  const percent = (mapi * 100).toFixed(1);
+  const percent = mapi.toFixed(3); // changed from percentage to prob
   
-  document.getElementById('mapi_result').textContent = `${percent}% predicted probability of MetALD-ALD.`;
+  document.getElementById('mapi_result').textContent = `${percent} predicted probability of MetALD-ALD.`;
 }
 
 // Attach event listeners to recalc MAPI on input changes
