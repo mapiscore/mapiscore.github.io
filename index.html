@@ -168,17 +168,66 @@
 
         <h5 class="fw-bold mt-4">Formula</h5>
 
-        <p>
-          $$\begin{aligned}
-          \text{MAPI} &= \frac{e^{\text{lp}}}{1 + e^{\text{lp}}}, \\[6pt]
-          \text{lp} &= -31.679 
-                      - 1.323 \times \text{Sex (female=1, male=0)} \\
-                    &\quad + 6.347 \times \ln(\text{MCV [fL]})
-                            + 0.583 \times \ln(\text{GGT [U/L]}) \\
-                    &\quad + 1.934 \times \ln(\text{HDL-C [mg/dL]})
-                            - 4.109 \times \ln(\text{HbA1c [%]})
-          \end{aligned}$$
-        </p>
+        <!-- (1) Configure MathJax for line-breaking -->
+        <script>
+          MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              displayMath: [['$$','$$'], ['\\[','\\]']],
+              processEscapes: true,
+              tags: 'ams',
+              packages: {'[+]': ['noerrors','noundefined','ams']},
+      
+              // The key setting: automatic line breaks in both inline and display math
+              linebreaks: {
+                automatic: true
+              }
+            },
+            // (Optional) Control the scaling so that equations are not too large on mobile
+            chtml: {
+              scale: 1,         
+              minScaleAdjust: 100
+            }
+          };
+        </script>
+      
+        <!-- (2) Load MathJax from CDN -->
+        <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+        <style>
+          /* (3) Container styling for line wrapping */
+          .math-container {
+            white-space: normal;     /* allow line wrapping */
+            word-wrap: break-word;   /* older name for overflow-wrap */
+            overflow-wrap: break-word;
+            max-width: 100%;         /* ensure it fits within screen bounds */
+            margin: 0 auto;
+          }
+        </style>
+      </head>
+      <body>
+      
+        <h1>Equation Demo</h1>
+        
+        <!-- (4) Use a math-container to allow wrapping if needed -->
+        <div class="math-container">
+          $$
+          \begin{aligned}
+            \text{MAPI} &= \frac{e^{\text{lp}}}{1 + e^{\text{lp}}}, \\[6pt]
+            \text{lp}   &= -31.679 
+                          \\ 
+                        &\quad - 1.323 \times \text{Sex (female=1, male=0)}
+                          \\ 
+                        &\quad + 6.347 \times \ln(\text{MCV [fL]})
+                          \\ 
+                        &\quad + 0.583 \times \ln(\text{GGT [U/L]})
+                          \\ 
+                        &\quad + 1.934 \times \ln(\text{HDL-C [mg/dL]})
+                          \\ 
+                        &\quad - 4.109 \times \ln(\text{HbA1c [%]})
+          \end{aligned}
+          $$
+        </div>
 
         <p>The MAPI model was developed and internally validated using a stepwise logistic regression framework combined with bootstrap resampling (2,000 bootstrap samples). The derivation cohort included 503 community-dwelling individuals with overweight or obesity from the San Diego Liver Study. The final model was calculated by combining the selected predictors weighted by their regression coefficients. Model discrimination was evaluated by calculating the area under the receiver operating characteristic curve (AUROC). Diagnostic cut-offs were derived based on sensitivity ≥0.90 (rule-out), specificity ≥0.90 (rule-in), and the Youden index (optimal cut-off maximizing sensitivity and specificity). The model was externally validated in an independent cohort, HERALD, which comprised 1,777 Swedish individuals from the general population.</p>
 
