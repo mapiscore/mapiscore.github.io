@@ -169,12 +169,15 @@
         <h5 class="fw-bold mt-4">Formula</h5>
 
         <p>
-          $$\text{MAPI} = \frac{e^{lp}}{1+e^{lp}}$$<br>
-          $$lp = -31.679 - 1.323 \times \text{Sex (female=1, male=0)} \\ 
-          + 6.347 \times \ln\left(\text{MCV [fL]}\right) \\ 
-          + 0.583 \times \ln\left(\text{GGT [U/L]}\right) \\ 
-          + 1.934 \times \ln\left(\text{HDL-C [mg/dL]}\right) \\ 
-          - 4.109 \times \ln\left(\text{HbA1c [%]}\right)$$
+          $$\begin{aligned}
+          \text{MAPI} &= \frac{e^{\text{lp}}}{1 + e^{\text{lp}}}, \\[6pt]
+          \text{lp} &= -31.679 
+                      - 1.323 \times \text{Sex (female=1, male=0)} \\
+                    &\quad + 6.347 \times \ln(\text{MCV [fL]})
+                            + 0.583 \times \ln(\text{GGT [U/L]}) \\
+                    &\quad + 1.934 \times \ln(\text{HDL-C [mg/dL]})
+                            - 4.109 \times \ln(\text{HbA1c [%]})
+          \end{aligned}$$
         </p>
 
         <p>The MAPI model was developed and internally validated using a stepwise logistic regression framework combined with bootstrap resampling (2,000 bootstrap samples). The derivation cohort included 503 community-dwelling individuals with overweight or obesity from the San Diego Liver Study. The final model was calculated by combining the selected predictors weighted by their regression coefficients. Model discrimination was evaluated by calculating the area under the receiver operating characteristic curve (AUROC). Diagnostic cut-offs were derived based on sensitivity ≥0.90 (rule-out), specificity ≥0.90 (rule-in), and the Youden index (optimal cut-off maximizing sensitivity and specificity). The model was externally validated in an independent cohort, HERALD, which comprised 1,777 Swedish individuals from the general population.</p>
